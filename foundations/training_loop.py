@@ -14,24 +14,19 @@ class Solution:
         # Loss: MSE = (1/n) * sum((y_hat - y)^2)
         # Initialize w = zeros, b = 0
         # return (np.round(w, 5), round(b, 5))
-        
         n = X.shape[0]
         w = np.zeros(X.shape[1])
         b = 0.0
-
         for _ in range(epochs):
-            # Forward pass
             y_hat = X @ w + b
             error = y_hat - y
-            # der_w = 2*X*(y_hat -y)/2
-            # der_b = 2*(y_hat -y)/2
-            # w = w - lr*der_w
-            # b = b - b*der_w
-            dw = (2.0 / n) * (X.T @ error)
-            db = (2.0 / n) * np.sum(error)
-
-            # Update weights
-            w = w - lr * dw
-            b = b - lr * db
+            d_w = (2.0/n)*(X.T @ error)
+            d_b= (2.0/n)*np.sum(error)
+            w = w - lr*d_w
+            b = b - lr*d_b
         return (np.round(w, 5), round(b, 5))
+
+
+
+
 
